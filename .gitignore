@@ -1,0 +1,16 @@
+# OS / editor
+.DS_Store
+.vscode/
+.idea/
+
+# Local env / secrets
+.env
+*.pem
+*.key
+
+# Runtime data
+node_modules/
+dist/
+build/
+data/
+backups/
