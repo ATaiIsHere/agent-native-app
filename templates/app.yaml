@@ -19,6 +19,11 @@ agent:
   skill: ./SKILL.md
   ai_logic_contract: ./ai-logic-contract.yaml
   mcp_server_name: my_app
+  supported_consumers:
+    - hermes-agent
+    - claude-code
+    - codex
+    - generic-mcp-client
 
 data:
   database:

@@ -41,6 +41,24 @@ Agent-native App Architecture is **not**:
 
 It is a packaging and integration pattern for making apps usable by personal agents.
 
+It should also avoid depending on one specific agent implementation. Hermes Agent may be one consumer, but the same app should be usable by Claude Code, Codex, Cursor-style agents, custom MCP clients, or future personal agent runtimes.
+
+See [`docs/agent-portability.md`](docs/agent-portability.md).
+
+## Motivation
+
+This pattern came from running a personal agent environment with multiple self-hosted services: entry pages, file browsers, office-style UIs, health dashboards, and personal quest systems.
+
+Three practical problems appeared:
+
+1. Service runtime data inside the agent home made the agent directory messy.
+2. Some services needed AI reasoning, but embedding a separate agent lifecycle into each app would duplicate memory, prompts, permissions, and governance.
+3. Using SaaS + Skill was useful, but too dependent on SaaS-specific models and not flexible enough for custom workflows.
+
+Agent-native Apps are the middle path: each service owns its runtime, data, UI, API, and deterministic rules; the personal agent owns AI reasoning and user context. The agent home stays clean, and the app remains portable across agents.
+
+See [`docs/motivation.md`](docs/motivation.md).
+
 ## Why it matters
 
 Most AI apps today create islands:
@@ -167,6 +185,15 @@ The personal agent owns AI logic:
 - using long-term user context across apps
 
 See [`examples/mochi-quest/`](examples/mochi-quest/) for a conceptual package.
+
+## Docs
+
+- [`docs/motivation.md`](docs/motivation.md) — where the pattern came from
+- [`docs/architecture.md`](docs/architecture.md) — architecture layers and responsibility split
+- [`docs/agent-portability.md`](docs/agent-portability.md) — keeping apps independent from a specific agent runtime
+- [`docs/ai-logic-contract.md`](docs/ai-logic-contract.md) — declaring AI decision points
+- [`docs/app-manifest.md`](docs/app-manifest.md) — draft `app.yaml` schema
+- [`docs/challenges-and-objections.md`](docs/challenges-and-objections.md) — likely critiques and working answers
 
 ## Current status
 

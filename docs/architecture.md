@@ -58,3 +58,11 @@ flowchart TD
 Do not put fragmented, product-specific AI brains inside every app.
 
 Instead, let apps expose **AI hooks** and let the user's personal agent execute the AI logic with the user's long-term context.
+
+## Service boundary principle
+
+Keep the agent environment clean.
+
+The app should own its runtime data, database, migrations, uploads, and operational lifecycle. The agent should install lightweight guidance and connectors: Skills, MCP configuration, and approval policy.
+
+This keeps the app portable across agent runtimes and prevents the personal agent home from becoming a dumping ground for every service's state.
