@@ -85,7 +85,7 @@ Personal Agent：user context / reasoning / planning / AI decisions / cross-app 
 
 4. **Agent Instructions：Agent 該怎麼用 App**
    - `SKILL.md`：什麼時候該用、怎麼判斷、怎麼寫回、哪些動作需要 human approval。
-   - 早期的 **AI Logic Contract** 可以先寫在 `SKILL.md`；變複雜後再抽成 `ai-logic-contract.yaml`。
+   - 目前這就是給 Agent 看的標準 context file；不要額外發明沒有人讀的規格檔。
 
 5. **Operations Notes：怎麼維護 App**
    - 安裝、更新、healthcheck、backup、restore、migration、rollback。
@@ -105,7 +105,6 @@ Personal Agent：user context / reasoning / planning / AI decisions / cross-app 
 
 成熟後可選：
 - app.yaml manifest
-- ai-logic-contract.yaml
 - RUNBOOK.md
 - events / webhooks
 - evals / permission policy
@@ -120,7 +119,7 @@ Personal Agent：user context / reasoning / planning / AI decisions / cross-app 
 - **App Runtime**：Dockerized server，包含 API / DB / UI / MCP server。
 - **App State & Rules**：goals、tasks、rewards、streaks、wallet、assessments、task ledger、active plan state、API validation。主要存在 server code 內，尚未獨立寫成「系統保證」文件。
 - **Agent Interface**：MCP tools 和 API endpoints，讓 Personal Agent 可以查詢、完成任務、產生計畫、調整 reward review。
-- **Agent Instructions**：`SKILL.md` 描述何時建立 goal、產生 plan、replan、complete task、review reward、問使用者。目前 AI Logic Contract 大多寫在 Skill 內。
+- **Agent Instructions**：`SKILL.md` 描述何時建立 goal、產生 plan、replan、complete task、review reward、問使用者。這就是目前給 Agent 看的主要 context file。
 - **Operations Notes**：部署與維運方式還在演進，未來可整理成更清楚的 README / RUNBOOK。
 
 這代表 Mochi Quest 不需要內建自己的 Agent。它只需要提供資料、UI、API、MCP tools 和 Skill；使用者自己的 Agent 會接手 AI reasoning。
@@ -196,7 +195,7 @@ An Agent-native App does not need a full specification on day one. Start with a 
 
 4. **Agent Instructions: how the agent should use the app**
    - `SKILL.md`: when to use the app, how to decide, how to write back, and which actions require human approval.
-   - Early **AI Logic Contracts** can live inside `SKILL.md`; extract them into `ai-logic-contract.yaml` later if they become complex or need tooling.
+   - This is the current standard context file for agents. Do not invent an extra spec file unless real tooling will read it.
 
 5. **Operations Notes: how the app is maintained**
    - Setup, update, healthcheck, backup, restore, migration, rollback.
@@ -216,7 +215,6 @@ Required:
 
 Optional as the app matures:
 - app.yaml manifest
-- ai-logic-contract.yaml
 - RUNBOOK.md
 - events / webhooks
 - evals / permission policy
@@ -231,7 +229,7 @@ Mochi Quest currently maps to the pattern like this:
 - **App Runtime**: Dockerized server with API / DB / UI / MCP server.
 - **App State & Rules**: goals, tasks, rewards, streaks, wallet, assessments, task ledger, active plan state, API validation. These mostly exist in server code today and have not been extracted into a separate “system guarantees” document.
 - **Agent Interface**: MCP tools and API endpoints let the Personal Agent read state, complete tasks, generate plans, and review rewards.
-- **Agent Instructions**: `SKILL.md` describes when to create goals, generate plans, replan, complete tasks, review rewards, and ask the user. The AI Logic Contract mostly lives inside the Skill today.
+- **Agent Instructions**: `SKILL.md` describes when to create goals, generate plans, replan, complete tasks, review rewards, and ask the user. It is the main context file for agents today.
 - **Operations Notes**: deployment and operations notes are still evolving and can later become a clearer README / RUNBOOK.
 
 This means Mochi Quest does not need to embed its own agent. It only needs to expose data, UI, APIs, MCP tools, and a Skill. The user's personal agent handles the AI reasoning.
