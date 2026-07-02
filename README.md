@@ -1,6 +1,6 @@
-# Agent-native App Architecture
+# Agent-native App
 
-> **Personal Agent as the AI Runtime for Apps.**
+> A working note on keeping app state inside apps, while letting a user's personal agent handle the AI parts.
 
 Language / 語言： [繁體中文](#繁體中文) | [English](#english)
 
@@ -33,11 +33,18 @@ Agent owns user context and AI reasoning.
 
 ## 繁體中文
 
-### 一句話
+### 這份筆記在說什麼
 
-**Agent-native App** 是一種應用架構：App 負責可靠的資料、UI、API、工具與執行環境；需要 AI 判斷的邏輯，委派給使用者自己的 **Personal Agent**。
+這不是在宣告一個新標準，也不是要發明一套 framework。
 
-它不是「每個 App 內建一個 chatbot」，而是讓 App 能被使用者的 Agent 理解、操作、維護，並接手需要 AI reasoning 的工作。
+這只是整理我在把自架服務接到 Personal Agent 時，逐漸形成的一個實作邊界：
+
+```text
+服務自己保存資料、提供 UI/API/MCP；
+需要 AI 判斷時，交給使用者原本就在用的 Agent。
+```
+
+目標很務實：保持 agent home 乾淨、避免每個 App 都內建一套 chatbot/agent lifecycle，同時讓服務不綁定特定 Agent。
 
 ---
 
@@ -143,11 +150,18 @@ Agent-native App 不是：
 
 ## English
 
-### One-liner
+### What this note is about
 
-**Agent-native App** is an application architecture where the app owns reliable data, UI, APIs, tools, and runtime boundaries, while AI decision-making is delegated to the user's **Personal Agent**.
+This is not a claim of a new standard, and not an attempt to introduce a new framework.
 
-It is not about embedding a chatbot into every app. It is about making apps understandable, operable, maintainable, and extensible by the user's own agent.
+It is a working note about a boundary I arrived at while wiring self-hosted services into a Personal Agent:
+
+```text
+Services keep their own data and expose UI/API/MCP;
+when AI judgment is needed, delegate it to the user's existing agent.
+```
+
+The practical goal is simple: keep the agent home clean, avoid embedding a chatbot/agent lifecycle into every app, and keep services portable across different agents.
 
 ---
 
